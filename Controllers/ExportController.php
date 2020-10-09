@@ -17,8 +17,7 @@ class ExportController extends BaseController
     {
         if (Arr::exists($params, 'type')) {
             $type = Arr::get($params, 'type');
-            $format = Arr::get($params, 'html');
-
+            $format = Arr::get($params, 'format', 'html');
             $collections = collect($params);
 
             switch ($type) {
@@ -47,12 +46,16 @@ class ExportController extends BaseController
                     break;
             }
             if (!$data) {
-                exit("Error: No data found!");
+                $d['errorMsg'] = 'Error: No data found!';
+                $this->set($d);
+                $this->render("error");
             }
 
-            echo $this->format($data, $format);
+            return $this->format($data, $format);
         } else {
-            exit('Please specify a type');
+            $d['errorMsg'] = 'Please specify a type';
+            $this->set($d);
+            $this->render("error");
         }
     }
 }

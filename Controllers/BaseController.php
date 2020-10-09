@@ -137,7 +137,9 @@ class BaseController extends Controller
                 break;
             default: // html
                 if (!$data->count()) {
-                    return $this->htmlTemplate('Sorry, no matching data was found');
+                    $d['errorMsg'] = 'Sorry, no matching data was found';
+                    $this->set($d);
+                    $this->render("error");
                 }
 
                 // extract headings
@@ -163,37 +165,11 @@ class BaseController extends Controller
                     $rows[] = $row;
                 }
                 $rows = implode('', $rows);
-                return $this->htmlTemplate('<table>' . $headings . $rows . '</table>');
+                $d['data'] = '<table>' . $headings . $rows . '</table>';
+                $this->set($d);
+                $this->render("index");
+
                 break;
         }
     }
-
-    // wrap html in a standard template
-    public function htmlTemplate($html)
-    {
-        return '
-<html>
-<head>
-<style type="text/css">
-    body {
-        font: 16px Roboto, Arial, Helvetica, Sans-serif;
-    }
-    td, th {
-        padding: 4px 8px;
-    }
-    th {
-        background: #eee;
-        font-weight: 500;
-    }
-    tr:nth-child(odd) {
-        background: #f4f4f4;
-    }
-</style>
-</head>
-<body>
-    ' . $html . '
-</body>
-</html>';
-    }
-
 }
