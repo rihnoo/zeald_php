@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * We can add here as many methods as we can to interacts with the database
+ */
+
 class NBA extends Model
 {
     /**

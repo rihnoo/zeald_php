@@ -3,6 +3,9 @@ use Illuminate\Support\Arr;
 
 require ROOT . 'Models/NBA.php';
 
+/**
+ * We can add here more actions for CRUD operations
+ */
 class ExportController extends BaseController
 {
     const SEARCHARGS = ['player', 'playerId', 'team', 'position', 'country'];

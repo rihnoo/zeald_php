@@ -7,7 +7,7 @@ final class Database
     public static function Instance()
     {
         if (is_null(self::$db)) {
-            self::$db = new mysqli('localhost', 'root', '', 'nba2019');
+            self::$db = new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME);
         }
         return self::$db;
     }
