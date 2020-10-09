@@ -1,18 +1,14 @@
 <?php
 
-class Database
+final class Database
 {
-    private static $bdd = null;
+    private static $db = null;
 
-    private function __construct()
+    public static function Instance()
     {
-    }
-
-    public static function getBdd()
-    {
-        if (is_null(self::$bdd)) {
-            self::$bdd = new PDO("mysql:host=localhost;dbname=todo_php", 'root', 'root');
+        if (is_null(self::$db)) {
+            self::$db = new mysqli('localhost', 'root', '', 'nba2019');
         }
-        return self::$bdd;
+        return self::$db;
     }
 }

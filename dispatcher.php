@@ -12,7 +12,7 @@ class Dispatcher
 
         $controller = $this->loadController();
 
-        call_user_func_array([$controller, $this->request->action], $this->request->params);
+        call_user_func_array([$controller, $this->request->action], [$this->request->params]);
     }
 
     public function loadController()
