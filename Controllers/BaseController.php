@@ -103,11 +103,11 @@ class BaseController extends Controller
                 $xml = Array2XML::createXML('data', [
                     'entry' => $xmlData,
                 ]);
-                return $xml->saveXML();
+                echo $xml->saveXML();
                 break;
             case 'json':
                 header('Content-type: application/json');
-                return json_encode($data->all());
+                echo json_encode($data->all());
                 break;
             case 'csv':
                 header('Content-type: text/csv');
